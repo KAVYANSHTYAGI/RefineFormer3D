@@ -1,5 +1,3 @@
-# RefineFormer3D
-
 # 🧠 RefineFormer3D - Brain Tumor Segmentation (BraTS 2017)
 
 <div align="center">
