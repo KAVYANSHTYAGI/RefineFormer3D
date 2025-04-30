@@ -9,6 +9,12 @@ class DiceLoss(nn.Module):
         self.smooth = smooth
 
     def forward(self, logits, targets):
+        # Ensure targets and logits spatial shapes match
+        # targets: (B, D, H, W) or (B,1,D,H,W)
+        if targets.ndim == 5:
+            targets = targets.squeeze(1)
+        assert targets.shape[1:] == logits.shape[2:], \
+            f"Target spatial shape {targets.shape[1:]} doesn't match logits spatial shape {logits.shape[2:]}"
         num_classes = logits.shape[1]
         probs = torch.softmax(logits, dim=1)
         targets_onehot = F.one_hot(targets, num_classes).permute(0, 4, 1, 2, 3).float()
@@ -18,9 +24,7 @@ class DiceLoss(nn.Module):
         cardinality = torch.sum(probs + targets_onehot, dims)
 
         dice = (2. * intersection + self.smooth) / (cardinality + self.smooth)
-        dice_loss = 1. - dice.mean()
-
-        return dice_loss
+        return 1. - dice.mean()
 
 # Tversky Loss
 class TverskyLoss(nn.Module):
@@ -31,6 +35,10 @@ class TverskyLoss(nn.Module):
         self.smooth = smooth
 
     def forward(self, logits, targets):
+        if targets.ndim == 5:
+            targets = targets.squeeze(1)
+        assert targets.shape[1:] == logits.shape[2:], \
+            f"Target spatial shape {targets.shape[1:]} doesn't match logits spatial shape {logits.shape[2:]}"
         num_classes = logits.shape[1]
         probs = torch.softmax(logits, dim=1)
         targets_onehot = F.one_hot(targets, num_classes).permute(0, 4, 1, 2, 3).float()
@@ -41,9 +49,7 @@ class TverskyLoss(nn.Module):
         FN = torch.sum((1 - probs) * targets_onehot, dims)
 
         tversky = (TP + self.smooth) / (TP + self.alpha * FP + self.beta * FN + self.smooth)
-        tversky_loss = 1. - tversky.mean()
-
-        return tversky_loss
+        return 1. - tversky.mean()
 
 # Cross Entropy
 class SoftCrossEntropyLoss(nn.Module):
@@ -51,10 +57,18 @@ class SoftCrossEntropyLoss(nn.Module):
         super(SoftCrossEntropyLoss, self).__init__()
 
     def forward(self, logits, targets):
+        if targets.ndim == 5:
+            targets = targets.squeeze(1)
+        if not isinstance(targets, torch.Tensor):
+            raise TypeError(f"[CrossEntropy] Expected torch.Tensor, but got {type(targets)}")
+        if targets.dtype != torch.long:
+            raise TypeError(f"[CrossEntropy] Expected targets dtype torch.long, but got {targets.dtype}")
         return F.cross_entropy(logits, targets)
 
-# Boundary Loss (Optional, for structures like tumor borders)
+# Boundary Loss (Optional)
 def compute_boundary_loss(preds, targets):
+    if targets.ndim == 5:
+        targets = targets.squeeze(1)
     preds = torch.softmax(preds, dim=1)
     grad_preds = (
         torch.abs(preds[:, :, :-1, :, :] - preds[:, :, 1:, :, :]).mean() +
@@ -78,24 +92,41 @@ class RefineFormer3DLoss(nn.Module):
         self.ce_weight = ce_weight
 
     def forward(self, outputs, targets):
-        """
-        outputs: dict from RefineFormer3D forward pass
-        targets: ground truth masks (B, D, H, W)
-        """
+        # Allow plain tensor outputs
+        if isinstance(outputs, torch.Tensor):
+            outputs = {"main": outputs}
 
-        loss_main = self.dice_weight * self.dice(outputs["main"], targets) + \
-                    self.tversky_weight * self.tversky(outputs["main"], targets) + \
-                    self.ce_weight * self.ce(outputs["main"], targets)
+        main_output = outputs.get("main")
+        if main_output is None:
+            raise KeyError("[Loss] 'main' key not found in model outputs")
 
-        loss_boundary = self.boundary_weight * compute_boundary_loss(outputs["main"], targets)
+        # Squeeze channel if present
+        if targets.ndim == 5:
+            targets = targets.squeeze(1)
 
-        # Auxiliary Losses
-        aux_loss = 0
+        # Basic checks
+        assert isinstance(targets, torch.Tensor), f"Expected Tensor, got {type(targets)}"
+        assert targets.dtype == torch.long, f"Expected long dtype, got {targets.dtype}"
+        num_classes = main_output.shape[1]
+        assert torch.max(targets) < num_classes, \
+            f"Target value too high: got max {torch.max(targets)}, expected < {num_classes}"
+
+        # Compute main loss
+        loss_main = (
+            self.dice_weight * self.dice(main_output, targets) +
+            self.tversky_weight * self.tversky(main_output, targets) +
+            self.ce_weight * self.ce(main_output, targets)
+        )
+
+        # Boundary loss
+        loss_boundary = self.boundary_weight * compute_boundary_loss(main_output, targets)
+
+        # Auxiliary losses
+        aux_loss = 0.0
         for aux_key in ["aux2", "aux3", "aux4"]:
-            aux_loss += self.dice(outputs[aux_key], targets) + self.ce(outputs[aux_key], targets)
-
+            aux_out = outputs.get(aux_key)
+            if aux_out is not None:
+                aux_loss += (self.dice(aux_out, targets) + self.ce(aux_out, targets))
         aux_loss = self.aux_weight * aux_loss
 
-        total_loss = loss_main + aux_loss + loss_boundary
-
-        return total_loss
+        return loss_main + aux_loss + loss_boundary
