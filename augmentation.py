@@ -7,24 +7,25 @@ class RandomFlip3D:
         self.p = p
 
     def __call__(self, image, label):
-        if random.random() < self.p:
-            axis = random.choice([2, 3, 4])  # D, H, W axis in input
-            image = torch.flip(image, dims=[axis-1])  # image: (C, D, H, W)
-            label = torch.flip(label, dims=[axis-1])  # label: (D, H, W)
+        if torch.rand(1) < self.p:
+            axis = torch.randint(0, 3, (1,)).item()  # 0=D, 1=H, 2=W
+            image = torch.flip(image, dims=[axis + 1])  # image (C,D,H,W) --> axis+1
+            label = torch.flip(label, dims=[axis])      # label (D,H,W) --> axis
         return image, label
+
 
 class RandomRotation3D:
-    def __init__(self, p=0.5, angles=[90, 180, 270]):
+    def __init__(self, p=0.5):
         self.p = p
-        self.angles = angles
 
     def __call__(self, image, label):
-        if random.random() < self.p:
-            k = random.choice([1, 2, 3])  # rotate 90, 180, 270 degrees
-            axis = random.choice([(2,3), (2,4), (3,4)])  # rotate in any 2D plane
-            image = torch.rot90(image, k, dims=(axis[0]-1, axis[1]-1))
-            label = torch.rot90(label, k, dims=(axis[0]-1, axis[1]-1))
+        if torch.rand(1) < self.p:
+            dims = sorted(random.sample([0, 1, 2], 2))  # ensure distinct axes
+            k = torch.randint(0, 4, (1,)).item()
+            image = torch.rot90(image, k, dims=(dims[0]+1, dims[1]+1))  # +1 for image (C, D, H, W)
+            label = torch.rot90(label, k, dims=(dims[0], dims[1]))      # label (D, H, W)
         return image, label
+
 
 class RandomNoise3D:
     def __init__(self, p=0.3, noise_std=0.01):
