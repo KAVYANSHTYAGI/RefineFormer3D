@@ -1,0 +1,11 @@
+model 2 
+
+| Model                      | Dice Score (%) | Params | GFLOPs | Notes                        |
+| -------------------------- | -------------- | ------ | ------ | ---------------------------- |
+| **RefineFormer3D (Yours)** | **87.6**       | 15.7M  | 203.1  | Best Dice, efficient decoder |
+| **SegFormer3D**            | 82.1           | 4.5M   | 17.5   | Lightweight ViT baseline     |
+| UNETR \[WACV'22]           | 71.1           | 92.5M  | 75.8   | Full Transformer Encoder     |
+| Swin-UNETR                 | 78.0–82.0      | 62.8M  | 384.2  | Swin backbone                |
+| nnFormer \[MICCAI'21]      | 86.4           | 150.5M | 213.4  | Current SOTA but very large  |
+| TransBTS                   | \~70.0         | \~50M  | \~100  | Bottleneck Transformer       |
+| TransUNet                  | 64.4           | 96.0M  | 88.9   | CNN-Transformer hybrid       |
