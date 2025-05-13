@@ -9,3 +9,15 @@ model 2
 | nnFormer \[MICCAI'21]      | 86.4           | 150.5M | 213.4  | Current SOTA but very large  |
 | TransBTS                   | \~70.0         | \~50M  | \~100  | Bottleneck Transformer       |
 | TransUNet                  | 64.4           | 96.0M  | 88.9   | CNN-Transformer hybrid       |
+
+
+
+
+| Model                        | Dice (%)  | ET Dice    | TC Dice | WT Dice | Params   | GFLOPs    | Comment                              |
+| ---------------------------- | --------- | ---------- | ------- | ------- | -------- | --------- | ------------------------------------ |
+| **RefineFormer3D (Phase 2)** | **88.04** | **100.00** | 81.27   | 91.04   | **8.2M** | **138.9** | ✅ Best overall; lowest params+GFLOPs |
+| RefineFormer3D (Phase 1)     | 87.60     | —          | —       | —       | 15.7M    | 203.1     | Higher compute; still beats SOTA     |
+| SegFormer3D (paper)          | 82.10     | 74.2       | 82.2    | 89.9    | 4.5M     | 17.5      | Fast, but lower Dice                 |
+| nnFormer \[MICCAI'21]        | 86.40     | \~85       | \~79    | \~88    | 150.5M   | 213.4     | Massive model; hard to deploy        |
+| Swin-UNETR                   | 78.0–82.0 | \~80       | \~78    | \~85    | 62.8M    | 384.2     | Swin-based heavy backbone            |
+| TransUNet (3D ext.)          | \~64.4    | —          | —       | —       | 96.0M    | 88.9      | Baseline for hybrid CNN–ViT          |
