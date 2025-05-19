@@ -1,3 +1,14 @@
+✅ Total valid patient directories found: 411
+✅ Total valid patient directories found: 73
+
+--- Epoch [1/300] ---
+Training:   0%|          | 0/411 [00:00<?, ?it/s]/mnt/m2ssd/research project/Lightweight 3D Vision Transformers for Medical Imaging/my implementations/segformer3d_upgraded/.venv/lib/python3.8/site-packages/torch/_dynamo/eval_frame.py:600: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.4 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+/mnt/m2ssd/research project/Lightweight 3D Vision Transformers for Medical Imaging/my implementations/segformer3d_upgraded/.venv/lib/python3.8/site-packages/torch/utils/checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with torch.enable_grad(), device_autocast_ctx, torch.cpu.amp.autocast(**ctx.cpu_autocast_kwargs):  # type: ignore[attr-defined]
+Validation:   0%|          | 0/37 [00:00<?, ?it/s]         /mnt/m2ssd/research project/Lightweight 3D Vision Transformers for Medical Imaging/my implementations/segformer3d_upgraded/.venv/lib/python3.8/site-packages/torch/utils/checkpoint.py:92: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+                                                           
 --- Evaluation Results:
 Avg Dice (mean over all classes): 0.6544
 WT Dice (Whole Tumor):           73.49%
@@ -319,3 +330,600 @@ ET Dice (Enhancing Tumor):       100.00%
 Per-Class Dice: ['99.83%', '78.79%', '80.76%']
 Overall Accuracy:                98.88%
 Train Loss: 0.5384 | Validation Loss: 0.5422 | Avg Dice: 0.8516
+
+--- Epoch [29/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8493
+WT Dice (Whole Tumor):           89.31%
+TC Dice (Tumor Core):            78.33%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.85%', '79.68%', '78.60%']
+Overall Accuracy:                98.89%
+Train Loss: 0.5201 | Validation Loss: 0.5326 | Avg Dice: 0.8493
+
+--- Epoch [30/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8515
+WT Dice (Whole Tumor):           89.83%
+TC Dice (Tumor Core):            78.04%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.80%', '76.20%', '76.03%']
+Overall Accuracy:                98.90%
+Train Loss: 0.5266 | Validation Loss: 0.5427 | Avg Dice: 0.8515
+
+--- Epoch [31/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8398
+WT Dice (Whole Tumor):           87.95%
+TC Dice (Tumor Core):            77.56%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.87%', '81.53%', '82.75%']
+Overall Accuracy:                98.85%
+Train Loss: 0.5149 | Validation Loss: 0.5464 | Avg Dice: 0.8398
+
+--- Epoch [32/300] ---
+                                                           
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8550
+WT Dice (Whole Tumor):           89.66%
+TC Dice (Tumor Core):            77.63%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.77%', '73.87%', '77.61%']
+Overall Accuracy:                98.91%
+Train Loss: 0.5150 | Validation Loss: 0.5332 | Avg Dice: 0.8550
+
+--- Epoch [33/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8560
+WT Dice (Whole Tumor):           89.57%
+TC Dice (Tumor Core):            78.36%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.78%', '75.31%', '77.24%']
+Overall Accuracy:                98.91%
+Train Loss: 0.5103 | Validation Loss: 0.5229 | Avg Dice: 0.8560
+
+--- Epoch [34/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8530
+WT Dice (Whole Tumor):           90.01%
+TC Dice (Tumor Core):            77.15%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.84%', '79.46%', '81.64%']
+Overall Accuracy:                98.91%
+Train Loss: 0.5030 | Validation Loss: 0.5326 | Avg Dice: 0.8530
+
+--- Epoch [35/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8547
+WT Dice (Whole Tumor):           89.52%
+TC Dice (Tumor Core):            78.36%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.84%', '79.99%', '79.60%']
+Overall Accuracy:                98.92%
+Train Loss: 0.4905 | Validation Loss: 0.5178 | Avg Dice: 0.8547
+
+--- Epoch [36/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8556
+WT Dice (Whole Tumor):           89.60%
+TC Dice (Tumor Core):            78.62%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.83%', '79.12%', '78.69%']
+Overall Accuracy:                98.94%
+Train Loss: 0.5009 | Validation Loss: 0.5057 | Avg Dice: 0.8556
+
+--- Epoch [37/300] ---
+                                                             
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8558
+WT Dice (Whole Tumor):           89.55%
+TC Dice (Tumor Core):            77.77%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.81%', '77.98%', '76.42%']
+Overall Accuracy:                98.90%
+Train Loss: 0.4733 | Validation Loss: 0.5220 | Avg Dice: 0.8558
+
+--- Epoch [38/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8473
+WT Dice (Whole Tumor):           88.82%
+TC Dice (Tumor Core):            77.43%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.85%', '80.09%', '78.47%']
+Overall Accuracy:                98.87%
+Train Loss: 0.4972 | Validation Loss: 0.5271 | Avg Dice: 0.8473
+
+--- Epoch [39/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8522
+WT Dice (Whole Tumor):           89.90%
+TC Dice (Tumor Core):            76.81%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.86%', '81.51%', '77.94%']
+Overall Accuracy:                98.91%
+Train Loss: 0.4773 | Validation Loss: 0.5281 | Avg Dice: 0.8522
+
+--- Epoch [40/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8599
+WT Dice (Whole Tumor):           90.17%
+TC Dice (Tumor Core):            79.28%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.82%', '78.06%', '77.61%']
+Overall Accuracy:                98.96%
+Train Loss: 0.4921 | Validation Loss: 0.5071 | Avg Dice: 0.8599
+✅ New best model saved (best Dice: 0.8599)
+
+--- Epoch [41/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8535
+WT Dice (Whole Tumor):           90.05%
+TC Dice (Tumor Core):            79.54%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.82%', '76.91%', '80.48%']
+Overall Accuracy:                98.97%
+Train Loss: 0.4768 | Validation Loss: 0.5042 | Avg Dice: 0.8535
+
+--- Epoch [42/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8595
+WT Dice (Whole Tumor):           89.31%
+TC Dice (Tumor Core):            78.27%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.85%', '80.13%', '82.17%']
+Overall Accuracy:                98.92%
+Train Loss: 0.4744 | Validation Loss: 0.5022 | Avg Dice: 0.8595
+
+--- Epoch [43/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8647
+WT Dice (Whole Tumor):           90.34%
+TC Dice (Tumor Core):            79.34%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.80%', '76.23%', '80.22%']
+Overall Accuracy:                98.98%
+Train Loss: 0.4525 | Validation Loss: 0.4964 | Avg Dice: 0.8647
+✅ New best model saved (best Dice: 0.8647)
+
+--- Epoch [44/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8656
+WT Dice (Whole Tumor):           90.18%
+TC Dice (Tumor Core):            79.00%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.83%', '78.72%', '79.06%']
+Overall Accuracy:                98.98%
+Train Loss: 0.4642 | Validation Loss: 0.4912 | Avg Dice: 0.8656
+✅ New best model saved (best Dice: 0.8656)
+
+--- Epoch [45/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8556
+WT Dice (Whole Tumor):           88.85%
+TC Dice (Tumor Core):            78.18%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.88%', '82.36%', '82.35%']
+Overall Accuracy:                98.89%
+Train Loss: 0.4617 | Validation Loss: 0.5085 | Avg Dice: 0.8556
+
+--- Epoch [46/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8630
+WT Dice (Whole Tumor):           90.18%
+TC Dice (Tumor Core):            79.21%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.85%', '80.30%', '82.29%']
+Overall Accuracy:                98.96%
+Train Loss: 0.4623 | Validation Loss: 0.4956 | Avg Dice: 0.8630
+
+--- Epoch [47/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8569
+WT Dice (Whole Tumor):           90.10%
+TC Dice (Tumor Core):            79.26%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.83%', '77.78%', '81.83%']
+Overall Accuracy:                98.95%
+Train Loss: 0.4575 | Validation Loss: 0.5076 | Avg Dice: 0.8569
+
+--- Epoch [48/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8556
+WT Dice (Whole Tumor):           89.51%
+TC Dice (Tumor Core):            78.60%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.87%', '81.10%', '83.22%']
+Overall Accuracy:                98.92%
+Train Loss: 0.4521 | Validation Loss: 0.5108 | Avg Dice: 0.8556
+
+--- Epoch [49/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8633
+WT Dice (Whole Tumor):           90.18%
+TC Dice (Tumor Core):            79.49%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.83%', '77.39%', '80.65%']
+Overall Accuracy:                98.99%
+Train Loss: 0.4485 | Validation Loss: 0.4898 | Avg Dice: 0.8633
+
+--- Epoch [50/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8572
+WT Dice (Whole Tumor):           89.07%
+TC Dice (Tumor Core):            78.96%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.84%', '78.17%', '82.77%']
+Overall Accuracy:                98.93%
+Train Loss: 0.4460 | Validation Loss: 0.5005 | Avg Dice: 0.8572
+
+--- Epoch [51/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8558
+WT Dice (Whole Tumor):           89.03%
+TC Dice (Tumor Core):            77.41%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.88%', '82.18%', '79.69%']
+Overall Accuracy:                98.91%
+Train Loss: 0.4362 | Validation Loss: 0.5041 | Avg Dice: 0.8558
+
+--- Epoch [52/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8615
+WT Dice (Whole Tumor):           90.44%
+TC Dice (Tumor Core):            79.35%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.85%', '79.44%', '83.20%']
+Overall Accuracy:                98.99%
+Train Loss: 0.4570 | Validation Loss: 0.4917 | Avg Dice: 0.8615
+
+--- Epoch [53/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8602
+WT Dice (Whole Tumor):           90.05%
+TC Dice (Tumor Core):            77.77%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.77%', '74.28%', '79.25%']
+Overall Accuracy:                98.92%
+Train Loss: 0.4388 | Validation Loss: 0.5209 | Avg Dice: 0.8602
+
+--- Epoch [54/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8676
+WT Dice (Whole Tumor):           90.43%
+TC Dice (Tumor Core):            79.48%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.85%', '79.81%', '81.06%']
+Overall Accuracy:                99.00%
+Train Loss: 0.4400 | Validation Loss: 0.4807 | Avg Dice: 0.8676
+✅ New best model saved (best Dice: 0.8676)
+
+--- Epoch [55/300] ---
+                                                             
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8649
+WT Dice (Whole Tumor):           90.03%
+TC Dice (Tumor Core):            79.55%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.85%', '79.52%', '83.23%']
+Overall Accuracy:                98.98%
+Train Loss: 0.4321 | Validation Loss: 0.4835 | Avg Dice: 0.8649
+
+--- Epoch [56/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8653
+WT Dice (Whole Tumor):           90.32%
+TC Dice (Tumor Core):            79.53%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.83%', '78.62%', '83.21%']
+Overall Accuracy:                99.00%
+Train Loss: 0.4383 | Validation Loss: 0.4804 | Avg Dice: 0.8653
+
+--- Epoch [57/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8557
+WT Dice (Whole Tumor):           89.82%
+TC Dice (Tumor Core):            79.09%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.84%', '78.22%', '79.96%']
+Overall Accuracy:                98.96%
+Train Loss: 0.4298 | Validation Loss: 0.4987 | Avg Dice: 0.8557
+
+--- Epoch [58/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8636
+WT Dice (Whole Tumor):           90.29%
+TC Dice (Tumor Core):            79.56%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.83%', '78.03%', '81.68%']
+Overall Accuracy:                98.98%
+Train Loss: 0.4277 | Validation Loss: 0.4857 | Avg Dice: 0.8636
+
+--- Epoch [59/300] ---
+                                                           
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8673
+WT Dice (Whole Tumor):           90.04%
+TC Dice (Tumor Core):            79.43%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.86%', '80.04%', '81.56%']
+Overall Accuracy:                98.99%
+Train Loss: 0.4278 | Validation Loss: 0.4776 | Avg Dice: 0.8673
+
+--- Epoch [60/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8682
+WT Dice (Whole Tumor):           90.42%
+TC Dice (Tumor Core):            79.73%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.82%', '76.91%', '78.06%']
+Overall Accuracy:                99.00%
+Train Loss: 0.4347 | Validation Loss: 0.4832 | Avg Dice: 0.8682
+✅ New best model saved (best Dice: 0.8682)
+
+--- Epoch [61/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8671
+WT Dice (Whole Tumor):           90.10%
+TC Dice (Tumor Core):            79.33%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.86%', '79.91%', '82.38%']
+Overall Accuracy:                98.99%
+Train Loss: 0.4249 | Validation Loss: 0.4789 | Avg Dice: 0.8671
+
+--- Epoch [62/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8625
+WT Dice (Whole Tumor):           90.00%
+TC Dice (Tumor Core):            79.52%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.85%', '79.49%', '82.73%']
+Overall Accuracy:                98.98%
+Train Loss: 0.4172 | Validation Loss: 0.4833 | Avg Dice: 0.8625
+
+--- Epoch [63/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8682
+WT Dice (Whole Tumor):           90.47%
+TC Dice (Tumor Core):            80.13%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.82%', '76.66%', '82.77%']
+Overall Accuracy:                99.00%
+Train Loss: 0.4205 | Validation Loss: 0.4786 | Avg Dice: 0.8682
+✅ New best model saved (best Dice: 0.8682)
+
+--- Epoch [64/300] ---
+                                                           
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8699
+WT Dice (Whole Tumor):           90.40%
+TC Dice (Tumor Core):            80.11%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.84%', '77.92%', '81.13%']
+Overall Accuracy:                99.01%
+Train Loss: 0.4246 | Validation Loss: 0.4730 | Avg Dice: 0.8699
+✅ New best model saved (best Dice: 0.8699)
+
+--- Epoch [65/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8700
+WT Dice (Whole Tumor):           90.44%
+TC Dice (Tumor Core):            80.11%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.82%', '76.21%', '78.30%']
+Overall Accuracy:                99.02%
+Train Loss: 0.4259 | Validation Loss: 0.4705 | Avg Dice: 0.8700
+✅ New best model saved (best Dice: 0.8700)
+
+--- Epoch [66/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8692
+WT Dice (Whole Tumor):           90.38%
+TC Dice (Tumor Core):            79.57%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.85%', '79.41%', '83.68%']
+Overall Accuracy:                99.01%
+Train Loss: 0.4147 | Validation Loss: 0.4728 | Avg Dice: 0.8692
+
+--- Epoch [67/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8666
+WT Dice (Whole Tumor):           90.00%
+TC Dice (Tumor Core):            79.31%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.84%', '79.00%', '85.02%']
+Overall Accuracy:                98.98%
+Train Loss: 0.4194 | Validation Loss: 0.4779 | Avg Dice: 0.8666
+
+--- Epoch [68/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8696
+WT Dice (Whole Tumor):           90.22%
+TC Dice (Tumor Core):            79.92%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.83%', '77.69%', '85.18%']
+Overall Accuracy:                99.00%
+Train Loss: 0.4086 | Validation Loss: 0.4745 | Avg Dice: 0.8696
+
+--- Epoch [69/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8677
+WT Dice (Whole Tumor):           90.12%
+TC Dice (Tumor Core):            79.66%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.83%', '78.39%', '83.15%']
+Overall Accuracy:                98.99%
+Train Loss: 0.4147 | Validation Loss: 0.4807 | Avg Dice: 0.8677
+
+--- Epoch [70/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8645
+WT Dice (Whole Tumor):           90.12%
+TC Dice (Tumor Core):            79.85%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.84%', '78.68%', '82.81%']
+Overall Accuracy:                98.98%
+Train Loss: 0.4106 | Validation Loss: 0.4836 | Avg Dice: 0.8645
+
+--- Epoch [71/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8700
+WT Dice (Whole Tumor):           90.52%
+TC Dice (Tumor Core):            79.66%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.84%', '78.74%', '83.43%']
+Overall Accuracy:                99.01%
+Train Loss: 0.4079 | Validation Loss: 0.4770 | Avg Dice: 0.8700
+✅ New best model saved (best Dice: 0.8700)
+
+--- Epoch [72/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8694
+WT Dice (Whole Tumor):           90.45%
+TC Dice (Tumor Core):            79.98%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.81%', '76.40%', '82.33%']
+Overall Accuracy:                99.02%
+Train Loss: 0.4058 | Validation Loss: 0.4754 | Avg Dice: 0.8694
+
+--- Epoch [73/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8691
+WT Dice (Whole Tumor):           90.43%
+TC Dice (Tumor Core):            79.38%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.84%', '79.08%', '84.08%']
+Overall Accuracy:                99.00%
+Train Loss: 0.4034 | Validation Loss: 0.4767 | Avg Dice: 0.8691
+
+--- Epoch [74/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8709
+WT Dice (Whole Tumor):           90.52%
+TC Dice (Tumor Core):            79.66%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.82%', '77.11%', '84.57%']
+Overall Accuracy:                99.01%
+Train Loss: 0.4047 | Validation Loss: 0.4769 | Avg Dice: 0.8709
+✅ New best model saved (best Dice: 0.8709)
+
+--- Epoch [75/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8670
+WT Dice (Whole Tumor):           90.00%
+TC Dice (Tumor Core):            79.72%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.84%', '78.79%', '85.09%']
+Overall Accuracy:                99.00%
+Train Loss: 0.4120 | Validation Loss: 0.4741 | Avg Dice: 0.8670
+
+--- Epoch [76/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8698
+WT Dice (Whole Tumor):           90.59%
+TC Dice (Tumor Core):            80.05%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.83%', '77.70%', '84.15%']
+Overall Accuracy:                99.03%
+Train Loss: 0.4008 | Validation Loss: 0.4707 | Avg Dice: 0.8698
+
+--- Epoch [77/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8719
+WT Dice (Whole Tumor):           90.42%
+TC Dice (Tumor Core):            79.97%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.83%', '77.56%', '84.88%']
+Overall Accuracy:                99.02%
+Train Loss: 0.4000 | Validation Loss: 0.4672 | Avg Dice: 0.8719
+✅ New best model saved (best Dice: 0.8719)
+
+--- Epoch [78/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8715
+WT Dice (Whole Tumor):           90.51%
+TC Dice (Tumor Core):            79.87%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.84%', '79.00%', '85.73%']
+Overall Accuracy:                99.02%
+Train Loss: 0.3923 | Validation Loss: 0.4705 | Avg Dice: 0.8715
+
+--- Epoch [79/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8673
+WT Dice (Whole Tumor):           90.42%
+TC Dice (Tumor Core):            80.04%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.84%', '78.07%', '85.53%']
+Overall Accuracy:                99.01%
+Train Loss: 0.3969 | Validation Loss: 0.4763 | Avg Dice: 0.8673
+
+--- Epoch [80/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8681
+WT Dice (Whole Tumor):           90.53%
+TC Dice (Tumor Core):            80.08%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.82%', '76.70%', '85.03%']
+Overall Accuracy:                99.02%
+Train Loss: 0.3904 | Validation Loss: 0.4735 | Avg Dice: 0.8681
+
+--- Epoch [81/300] ---
+                                                            
+--- Evaluation Results:
+Avg Dice (mean over all classes): 0.8681
+WT Dice (Whole Tumor):           90.24%
+TC Dice (Tumor Core):            79.60%
+ET Dice (Enhancing Tumor):       100.00%
+Per-Class Dice: ['99.85%', '78.95%', '85.47%']
+Overall Accuracy:                99.00%
+Train Loss: 0.4009 | Validation Loss: 0.4720 | Avg Dice: 0.8681
+
+--- Epoch [82/300] ---
+                                                            
