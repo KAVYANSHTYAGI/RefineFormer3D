@@ -1,0 +1,100 @@
+┌────────────────────────────────────┐
+│       Input 3D MRI Volume          │
+│     [B, 4, 128, 128, 128]          │
+└────────────────────────────────────┘
+                │
+                ▼
+┌────────────────────────────────────┐
+│     GhostConv3D + PosConv3D        │
+│     (PatchEmbed3D)                 │
+└────────────────────────────────────┘
+                │
+                ▼
+     ┌─────────────────────────────┐
+     │     Hierarchical Encoder    │
+     │ (4 stages, with shifting    │
+     │  window-based attention)    │
+     └─────────────────────────────┘
+                │
+     ┌──────────┼────────────┬─────────────┬─────────────┐
+     ▼          ▼            ▼             ▼             ▼
+  Stage 1    Stage 2      Stage 3       Stage 4        (c1–c4)
+ [B,64,…]   [B,128,…]    [B,320,…]     [B,512,…]       Feature maps
+                │
+                ▼
+┌────────────────────────────────────┐
+│         Refined Decoder            │
+│ (CrossFuse + SE + GhostConv3D)     │
+└────────────────────────────────────┘
+     ┌──────────┬────────────┬──────────────┐
+     ▼          ▼            ▼              ▼
+ decode3   →  decode2   →  decode1     →  final_up
+  (c4+c3)     (…+c2)        (…+c1)         +upsample
+                            │               │
+                     ┌──────┘         ┌─────┘
+                     ▼                ▼
+                  aux3             final_out
+                                  → seg_head
+                     │
+                   aux2
+                (deep supervision)
+
+                ▼
+     ┌──────────────────────────────┐
+     │ Output:                      │
+     │ main: [B, C, 128,128,128]    │
+     │ aux2: intermediate output    │
+     │ aux3: intermediate output    │
+     └──────────────────────────────┘
+
+
+
+
+
+| **Aspect**              | **RefineFormer3D (Phase 2)**                       | **SegFormer3D**                                  | **nnFormer \[MICCAI'21]**                      |
+| ----------------------- | -------------------------------------------------- | ------------------------------------------------ | ---------------------------------------------- |
+| **Encoder**             | 4-stage hierarchical Transformer                   | 4-stage Mix-Transformer                          | 4-stage with local and global attention        |
+| **Patch Embedding**     | GhostConv3D (efficient) + PosConv3D                | Conv3D-based + Overlapping patch embeddings      | Convolutions followed by tokenization          |
+| **Attention**           | WindowAttention3D (shifted windows)                | Efficient local attention (Mix-Token)            | LV-MSA + Shifted + Global Volume attention     |
+| **Feedforward**         | Low-Rank Linear + Depthwise Conv3D (MixFFN3D)      | MLP + Conv3D                                     | Standard MLP with deep channels                |
+| **Positional Encoding** | PosConv3D (learned spatial awareness)              | No explicit PE (replaced with hierarchical enc)  | No absolute PE; uses spatial bias              |
+| **Decoder**             | U-Net style with skip connections + CrossFuse + SE | All-MLP decoder (no skip connections)            | U-Net-like symmetric decoder                   |
+| **Auxiliary Losses**    | Yes (`aux2`, `aux3`) for deep supervision          | No auxiliary outputs                             | Not explicitly in paper                        |
+| **Attention Type**      | Local attention in shifted 3D windows              | Lightweight local (no global)                    | Alternating local & global volume attention    |
+| **Efficiency**          | Very high (GhostConv, low FLOPs, 8.2M params)      | Extremely lightweight (4.5M params, 17.5 GFLOPs) | Very heavy (150.5M params, 213.4 GFLOPs)       |
+| **Performance (Dice)**  | **88.04%** (ET: 100%)                              | 82.10%                                           | 86.40%                                         |
+| **ET Dice**             | **100.00**                                         | 74.20                                            | \~85                                           |
+| **TC Dice**             | 81.27                                              | 82.20                                            | \~79                                           |
+| **WT Dice**             | 91.04                                              | 89.90                                            | \~88                                           |
+| **Parameter Count**     | **8.2M**                                           | 4.5M                                             | 150.5M                                         |
+| **GFLOPs**              | **138.9**                                          | 17.5                                             | 213.4                                          |
+
+
+
+
+| Component                  | Innovation                                                                           | Novelty Status                                |
+| -------------------------- | ------------------------------------------------------------------------------------ | --------------------------------------------- |
+| **GhostConv3D**            | Efficient convolution using GhostNet-style 3D convolutions                           | ✅ Novel in 3D segmentation context            |
+| **CrossFuse Block**        | Combines skip + decoder via GhostConv and **SE attention** (channel-adaptive fusion) | ✅ New fusion approach                         |
+| **LowRank MLP**            | Low-Rank Linear layers + Depthwise Conv3D inside FFN                                 | ✅ Rarely explored in 3D ViT                   |
+| **Window Attention 3D**    | Efficient localized attention in **shifted windows** with caching of masks           | ⬤ Adapted from SwinTransformer, but optimized |
+| **Deep Supervision**       | Multi-scale segmentation loss (`aux2`, `aux3`) at mid-decoder stages                 | ⬤ Known technique, well-applied               |
+| **Checkpoints**            | Memory-efficient training for large 3D volumes                                       | ⬤ Engineering optimization                    |
+| **GhostDecoder + PosConv** | Lightweight but expressive decoder with depthwise convolution positional encoding    | ✅ Unique combination                          |
+
+
+
+
+
+
+
+| Aspect                     | **RefineFormer3D (Phase 2)**         | **SegFormer3D**                   | **nnFormer**                  |
+| -------------------------- | ------------------------------------ | --------------------------------- | ----------------------------- |
+| **Attention Mechanism**    | WindowAttention3D (Shifted)          | Lightweight, mix token, localized | Global + Local (volume-based) |
+| **Feedforward Block**      | LowRankLinear + Depthwise Conv3D     | Standard MLP                      | Standard MLP                  |
+| **Skip Connection Fusion** | CrossFuse (GhostConv + SE attention) | No skip connections               | Direct concatenation          |
+| **Decoder Style**          | Hybrid U-Net decoder                 | All-MLP                           | Symmetric full decoder        |
+| **Parameter Efficiency**   | **8.2M**                             | 4.5M                              | 150.5M                        |
+| **SE/Ghost-based Fusion**  | ✅ Unique to your method              | ❌ Not present                     | ❌ Not present                 |
+| **MLP Efficiency**         | ✅ Low-rank + Depthwise               | ❌                                 | ❌                             |
+| **Global Modeling**        | ❌ No global attention (local only)   | ❌                                 | ✅ Has global attention stage  |
