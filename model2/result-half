@@ -15,7 +15,7 @@ model 2
 
 | Model                        | Dice (%)  | ET Dice    | TC Dice | WT Dice | Params   | GFLOPs    | Comment                              |
 | ---------------------------- | --------- | ---------- | ------- | ------- | -------- | --------- | ------------------------------------ |
-| **RefineFormer3D (Phase 2)** | **88.04** | **100.00** | 81.27   | 91.04   | **8.2M** | **138.9** | ✅ Best overall; lowest params+GFLOPs |
+| **RefineFormer3D (Phase 2)** | **88.04** | **100.00** | 81.27   | 91.04   | **8.2M** | **138.9** | Best overall; lowest params+GFLOPs |
 | RefineFormer3D (Phase 1)     | 87.60     | —          | —       | —       | 15.7M    | 203.1     | Higher compute; still beats SOTA     |
 | SegFormer3D (paper)          | 82.10     | 74.2       | 82.2    | 89.9    | 4.5M     | 17.5      | Fast, but lower Dice                 |
 | nnFormer \[MICCAI'21]        | 86.40     | \~85       | \~79    | \~88    | 150.5M   | 213.4     | Massive model; hard to deploy        |
